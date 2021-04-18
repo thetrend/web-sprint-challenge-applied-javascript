@@ -70,7 +70,13 @@ const Card = (article) => {
     cardContainer.appendChild(child);
   });
 
-  // 20. Return the parent div
+  // 20. Add event listener to the card container when clicked
+  cardContainer.addEventListener('click', (event) => {
+  // 21. Console.log the headline textContent
+    console.log(headline.textContent);
+  });
+
+  // 22. Return the parent div
   return cardContainer;
 }
 
