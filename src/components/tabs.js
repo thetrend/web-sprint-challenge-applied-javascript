@@ -16,18 +16,25 @@ const Tabs = (topics) => {
   // </div>
   //
 
+  // 1. Create a parent div
   const topicsDiv = document.createElement('div');
+  // 2. And add class to it
   topicsDiv.classList.add('topics');
 
+  // 3. Loop over the topics array
   topics.forEach(topic => {
+  // 4. Create a child div
     const tabDiv = document.createElement('div');
+  // 5. Add a class to it
     tabDiv.classList.add('tab');
-
+  // 6. Give the div some textContent and set it equal to the topic
     tabDiv.textContent = topic;
 
+  // 7. Append each child div to the parent
     topicsDiv.appendChild(tabDiv);
   });
 
+  // 8. Return the parent div
   return topicsDiv;
 }
 
@@ -40,17 +47,26 @@ const tabsAppender = (selector) => {
   // Append the tabs to the element in the DOM that matches the selector passed to the function.
   //
 
+  // 1. Declare the URL to be used
   const url = `https://lambda-times-api.herokuapp.com/topics`;
+  // 2, Get the URL using Axios
   axios.get(url)
+  // 3. Then do something with the data returned
     .then(response => {
+  // 4. Grab the parent div specified with the selector variable
       const parent = document.querySelector(selector);
+  // 5. Declare the list array to be taken from the response
       const list = response.data.topics;
+  // 6. Declare the Tab that consists of a Tabs'ified list array
       const Tab = Tabs(list);
 
+  // 7. Append the Tab to the parent div
       parent.appendChild(Tab);
 
+  // 6. Return the parent div
       return parent;
     })
+  // Axios: if the get fails, console.log the resulting error
     .catch(err => {
       console.log(err);
     });
