@@ -16,14 +16,14 @@ const Header = (title, date, temp) => {
 
   const dateSpan = document.createElement('span');
   dateSpan.classList.add('date');
-  dateSpan.textContent = `{ ${date} }`;
+  dateSpan.textContent = date;
 
   const h1 = document.createElement('h1');
-  h1.textContent = `{ ${title} }`;
+  h1.textContent = title;
 
   const tempSpan = document.createElement('span');
   tempSpan.classList.add('temp');
-  tempSpan.textContent = `{ ${temp} }`;
+  tempSpan.textContent = temp;
 
   const headerDivContent = [dateSpan, h1, tempSpan];
   headerDivContent.forEach(element => {
@@ -40,7 +40,11 @@ const headerAppender = (selector) => {
   // It should create a header using the Header component above, passing arguments of your choosing.
   // It should append the header to the element in the DOM that matches the given selector.
   //
-  return document.querySelector(selector).appendChild(Header('title', 'date', 'temp'));
+
+  const today = new Date();
+  const date = `${(today.getMonth()+1)}/${today.getDate()}/${today.getFullYear()}`;
+
+  return document.querySelector(selector).appendChild(Header('This Week The Trend', date, 'temp'));
 }
 
 export { Header, headerAppender }
